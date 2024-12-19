@@ -47,10 +47,10 @@ class _ScreenShareScreenState extends State<ScreenShareScreen> {
   Stream<Uint8List?> _createScreenCaptureStream() async* {
     while (true) {
       await Future.delayed(
-          Duration(milliseconds: 100)); // Adjust interval as needed
+          Duration(microseconds: 1)); // Adjust interval as needed
       try {
         Uint8List? image = await screenshotController.capture(
-            delay: Duration(milliseconds: 100));
+            delay: Duration(microseconds: 1));
         debugPrint("image:-$image");
         yield image;
       } catch (e) {
@@ -101,7 +101,7 @@ class _ScreenShareScreenState extends State<ScreenShareScreen> {
 
               // Flush the response to send the frame immediately
               await request.response.flush();
-              await Future.delayed(Duration(milliseconds: 100)); // ~10 FPS
+              await Future.delayed(Duration(microseconds: 1)); // ~10 FPS
             }
           }
         } catch (e) {
